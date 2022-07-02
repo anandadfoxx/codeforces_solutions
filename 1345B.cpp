@@ -12,7 +12,6 @@ int find(int* arr, int val) {
             else if (val < arr[m]) r = m - 1;
             else return m;
         } else return m;
-        // printf("%d %d\n", l, r);
     }
     return 0;
 }
