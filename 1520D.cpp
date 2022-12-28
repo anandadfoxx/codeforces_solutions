@@ -16,36 +16,32 @@ using namespace std;
 typedef long long LL;
 typedef long double LD;
 
-const int MA = 101;
-int b[MA], g[MA];
+bool cmp(pii a, pii b) {
+    return a.sec < b.sec;
+}
 
-int main() {
-    int n, m, ans = 0;
-
+void solve() {
+    int n, ans = 0;
     cin >> n;
+
+    int freqs[450006];
+    LL maxs = 0;
+    memset(freqs, 0, sizeof(freqs));
+
     FORO(i, n) {
         int x;
         cin >> x;
-        b[x]++;
+        // 200000 for adding minus index
+        int id = x-i + 200005;
+        freqs[id]++;
+        if (freqs[id] > 1) maxs += freqs[id] - 1;
     }
+    cout << maxs << '\n';
+}
 
-    cin >> m;
-    FORO(i, m) {
-        int x;
-        cin >> x;
-        g[x]++;
-    }
+int main() {
+    int t;
+    cin >> t;
 
-    FORO(i, 101) {
-        FOR(j, -1, 2) {
-            int ptr = i+j;
-            if (b[ptr] > 0) {
-                int sub = min(b[ptr], g[i]);
-                b[ptr] -= sub;
-                g[i] -= sub;
-                ans += sub;
-            }
-        }
-    }
-    printf("%d\n", ans);
+    while (t--) solve();
 }
