@@ -3,16 +3,27 @@
 using namespace std;
 typedef long long LL;
 
+bool isten(LL x) {
+    int sum = 0;
+
+    while (x) {
+        sum += x % 10;
+        x /= 10;
+    }
+    return sum == 10;
+}
+
 int main() {
     int k;
     cin >> k;
 
-    int ans = 19;
+    LL ans = 19;
 
-    FOR(i, 0, k) {
-        if (i % 9 == 0) {
-            ans += 9 * ((i % 100) / 9);
-        } else ans += 9;
+    while (k) {
+        k -= isten(ans);
+        if (k) {
+            ans += 9;
+        }
     }
     cout << ans << '\n';
 }
