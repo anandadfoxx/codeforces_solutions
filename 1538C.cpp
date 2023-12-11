@@ -16,38 +16,11 @@ using namespace std;
 typedef long long LL;
 typedef long double LD;
 
-/*
-CONSTRUCT:
-1. Take always front and end
-3. 
-*/
-
 int main() {
   int t;
   cin >> t;
-
   while (t--) {
-    int n;
-    cin >> n;
-    deque<int> data;
-
-    FORO(i, n) {
-      int x;
-      cin >> x;
-
-      data.push_back(x);
-    }
-    sort(data.begin(), data.end());
-
-    vector<int> ans;
-    while (!data.empty()) {
-      ans.pub(data.front()); data.pop_front();
-      if (data.empty()) continue;
-      ans.pub(data.back()); data.pop_back();
-    }
-
-    ROFO(i, ans.size()-1) {
-      printf((i != 0) ? "%d " : "%d\n", ans[i]);
-    }
+    int n, l, r;
+    cin >> n >> l >> r;
   }
 }
