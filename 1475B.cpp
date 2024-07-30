@@ -7,7 +7,6 @@
 #define fir first
 #define sec second
 #define pob pop_back
-#define mp make_pair
 #define read_arr(arr, start, end) for (int i = start; i < end; i++) { cin >> arr[i]; }
 #define vi vector<int>
 #define vl vector<long>
@@ -16,13 +15,31 @@ using namespace std;
 typedef long long LL;
 typedef long double LD;
 
-int main() {
-    int n, a, b;
-    cin >> n >> a >> b;
+#define DP 1000006
 
-    int ans = 0;
-    FOR(i, 1, n+1) {
-        ans += (((n-i) <= b) && (i-1 >= a));
-    }
-    cout << ans << '\n';
+int dp[DP];
+
+int valid(int x) {
+  if (x == 2020 || x == 2021) dp[x] = 1;
+  else if (x < 2020) dp[x] = 0;
+
+  if (dp[x] != -1) return dp[x];
+  dp[x] = valid(x-2020) || valid(x-2021);
+  return dp[x];
+}
+
+void solve() {
+  int n;
+  cin >> n;
+
+  printf(((valid(n) == 1) ? "YES\n" : "NO\n"));
+}
+
+int main() {
+  int t;
+  cin >> t;
+
+  memset(dp, -1, sizeof(dp));
+
+  while (t--) solve();
 }

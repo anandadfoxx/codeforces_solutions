@@ -7,7 +7,6 @@
 #define fir first
 #define sec second
 #define pob pop_back
-#define mp make_pair
 #define read_arr(arr, start, end) for (int i = start; i < end; i++) { cin >> arr[i]; }
 #define vi vector<int>
 #define vl vector<long>
@@ -17,12 +16,27 @@ typedef long long LL;
 typedef long double LD;
 
 int main() {
-    int n, a, b;
-    cin >> n >> a >> b;
+  string s;
+  cin >> s;
 
-    int ans = 0;
-    FOR(i, 1, n+1) {
-        ans += (((n-i) <= b) && (i-1 >= a));
+  int slen = s.length(), i = 0;
+
+  vi wubIdx;
+
+  while (i < slen) {
+    if (s.substr(i, 3) == "WUB") {
+      wubIdx.pub(i);
+      i += 3;
+      continue;
     }
-    cout << ans << '\n';
+    i++;
+  }
+
+  ROFO(x, wubIdx.size()-1) {
+    s.erase(wubIdx[x], 3);
+    if (s.substr(wubIdx[x], 1) != " ") s.insert(s.begin()+wubIdx[x], ' ');
+  }
+
+  while (s.substr(0, 1) == " ") s.erase(0, 1);
+  cout << s << '\n';
 }

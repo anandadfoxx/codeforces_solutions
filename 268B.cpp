@@ -7,7 +7,6 @@
 #define fir first
 #define sec second
 #define pob pop_back
-#define mp make_pair
 #define read_arr(arr, start, end) for (int i = start; i < end; i++) { cin >> arr[i]; }
 #define vi vector<int>
 #define vl vector<long>
@@ -17,12 +16,19 @@ typedef long long LL;
 typedef long double LD;
 
 int main() {
-    int n, a, b;
-    cin >> n >> a >> b;
+  int n;
+  cin >> n;
 
-    int ans = 0;
-    FOR(i, 1, n+1) {
-        ans += (((n-i) <= b) && (i-1 >= a));
+  LL tot = 0;
+  FOR(i, 1, n+1) {
+    if (i == 1) {
+      tot += n-1;
+    } else if (i == n) {
+      tot += n;
+    } else {
+      tot += (i * (n-i));
     }
-    cout << ans << '\n';
+
+  }
+  cout << tot << '\n';
 }
